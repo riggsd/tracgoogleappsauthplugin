@@ -7,9 +7,9 @@ setup(
 	version='0.2.2',
 	author='David A. Riggs',
 	author_email='david.riggs@createtank.com',
-	url='http://createtank.com',
-	download_url='http://createtank.com',
-	description='Auth plugin for Trac for integration with hosted Google Apps domain',
+	url='http://code.google.com/p/tracgoogleappsauthplugin/',
+	download_url='http://code.google.com/p/tracgoogleappsauthplugin/',
+	description='Trac authentication plugin for integration with hosted Google Apps domain',
 	long_description=open('README.txt').read(),
 	packages=find_packages(exclude=['*.tests*']),
 	entry_points = '''

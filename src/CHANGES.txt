@@ -4,6 +4,9 @@ TracGoogleAppsAuthPlugin Changelog
 0.2.2 - 2010-12-02
 ------------------
 
+* Fix bug to ensure that only members of Google Apps group configured for
+  'group_access' may log in.
+
 * List libraries dependencies on the "About Trac" page
 
 

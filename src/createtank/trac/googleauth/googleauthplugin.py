@@ -80,12 +80,17 @@ class GoogleAppsPasswordStore(Component):
 	def _get_all_users_in_group(self, group, suspended_users=True):
 		service = self._get_groups_service()
 		service.ProgrammaticLogin()
-		gapps_users_feed = service.RetrieveAllMembers(group, suspended_users)
+		gapps_users_feed = service.RetrieveAllMembers(group, suspended_users)  # BUG catch AppsForYourDomainException if group doesn't exist
 		self.log.debug(gapps_users_feed)  # DEBUG
 		emails = [user_dict['memberId'] for user_dict in gapps_users_feed]  # Groups service gives us email addresses instead of usernames
 		users = [email.split('@')[0] for email in emails if email.endswith(self.gapps_domain)]  # toss out members outside our domain
 		return users
 	
+	def _user_in_group(self, username, groupname):
+		groups_service = self._get_groups_service()
+		groups_service.ProgrammaticLogin()
+		return groups_service.IsMember(username, groupname)
+
 	
 	# IPasswordStore API
 	
@@ -151,6 +156,11 @@ class GoogleAppsPasswordStore(Component):
 		service = self._get_apps_service()
 		try:
 			service.ClientLogin(email, password, account_type='HOSTED', source='createtank-tracgoogleappsauthplugin-0.2')
+			
+			if self.gapps_group_access and not self._user_in_group(user, self.gapps_group_access):
+				self.log.debug('User "%s" not in required Google Apps group "%s", login rejected.' % (user, self.gapps_group_access))
+				return False
+			
 			if self.group_cache.has_key(user):
 				self.log.debug('Flushing group cache for user "%s".' % (user))
 				del self.group_cache[user]
