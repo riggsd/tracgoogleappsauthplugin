@@ -1,0 +1,7 @@
+syntax: glob
+*.pyc
+*~
+.DS_Store
+src/TracGoogleAppsAuthPlugin.egg-info/
+src/build/
+src/dist/

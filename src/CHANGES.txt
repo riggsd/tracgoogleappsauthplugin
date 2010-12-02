@@ -1,0 +1,35 @@
+TracGoogleAppsAuthPlugin Changelog
+==================================
+
+0.2.2 - 2010-12-02
+------------------
+
+* List libraries dependencies on the "About Trac" page
+
+
+0.2.1 - 2010-12-01
+------------------
+
+* Bug fix: Ensure users may only log in with username, not email address
+
+
+0.2.0 - 2010-11-30
+------------------
+
+* Added 'group_access' config option for restricting domain users to Google
+  Apps group membership.
+
+* Flush a user's cached groups upon login (so that newly adding a user to a
+  group will be quickly reflected in Trac by a logout/login).
+
+
+0.1.1 - 2010-11-29
+------------------
+
+* Minor bug fixes and packaging updates
+
+
+0.1.0 - 2010-11-27
+------------------
+
+* Initial alpha release with basic auth features.
