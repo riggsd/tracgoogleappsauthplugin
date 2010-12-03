@@ -4,7 +4,7 @@ from setuptools import find_packages, setup
 
 setup(
 	name='TracGoogleAppsAuthPlugin',
-	version='0.2.2',
+	version='0.2.3',
 	author='David A. Riggs',
 	author_email='david.riggs@createtank.com',
 	url='http://code.google.com/p/tracgoogleappsauthplugin/',

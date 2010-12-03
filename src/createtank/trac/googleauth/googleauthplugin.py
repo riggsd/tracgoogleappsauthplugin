@@ -60,33 +60,57 @@ class GoogleAppsPasswordStore(Component):
 		email = self._get_admin_email()
 		return GroupsService(email=email, domain=self.gapps_domain, password=self.gapps_admin_secret)
 	
+	def _populate_user_metadata(self, username, email, name=None):
+		"""Populate a user's metadata in the Trac DB so they appear in dropdown
+		lists and so email is available to notification subsystem"""
+		db = self.env.get_db_cnx()
+		cursor = db.cursor()
+		# WARNING: SQL only tested with sqlite3
+		cursor.execute('INSERT OR IGNORE INTO session (sid, authenticated, last_visit) VALUES (%s, 1, 0)', (username,))
+		cursor.execute('INSERT OR IGNORE INTO session_attribute (sid, authenticated, name, value) VALUES (%s, 1, "email", %s)', (username, email))
+		if name:
+			cursor.execute('INSERT OR IGNORE INTO session_attribute (sid, authenticated, name, value) VALUES (%s, 1, "name", %s)', (username, name))
+		db.commit()
+	
+	def _populate_users_metadata_all(self, gapps_users_feed):
+		"""_populate_user_metadata with AppsService users feed"""
+		self.log.debug('Populating Trac DB user metadata ...')
+		for user in gapps_users_feed.entry:
+			username = user.login.user_name
+			name = '%s %s'%(user.name.given_name, user.name.family_name)
+			email = self._get_user_email(user.login.user_name)
+			self._populate_user_metadata(username, email, name)
+	
+	def _populate_users_metadata_in_group(self, user_list):
+		"""_populate_user_metadata with only a username list"""
+		self.log.debug('Populating Trac DB user metadata ...')
+		for username in user_list:
+			email = self._get_user_email(username)
+			self._populate_user_metadata(username, email)
+	
 	def _get_all_users(self):
+		"""Retrieve list of all usernames from Google Apps"""
 		service = self._get_apps_service()
 		service.ProgrammaticLogin()
 		gapps_users_feed = service.RetrieveAllUsers()
-		self.log.debug(gapps_users_feed)
+		#self.log.debug(gapps_users_feed)  # DEBUG
 		users = [user.login.user_name for user in gapps_users_feed.entry]
-		
-		# EXPERIMENTAL ...
-		#db = self.env.get_db_cnx()
-		#cursor = db.cursor()
-		#for user in gapps_users_feed.entry:
-		#	cursor.execute('INSERT INTO session VALUES (%s, 1, 0)', (user.login.user_name,))
-		#	cursor.execute('INSERT INTO session_attribute VALUES (%s, 1, "name", %s)', (user.login.user_name, '%s %s'%(user.name.given_name, user.name.family_name)))
-		#	cursor.execute('INSERT INTO session_attribute VALUES (%s, 1, "email", %s)', (user.login.user_name, self._get_user_email(user.login.user_name)))
-		#	db.commit()
+		self._populate_users_metadata_all(gapps_users_feed)  # EXPERIMENTAL!
 		return users
-	
+		
 	def _get_all_users_in_group(self, group, suspended_users=True):
+		"""Retrieve list of all usernames belonging to specified group from Google Apps"""
 		service = self._get_groups_service()
 		service.ProgrammaticLogin()
 		gapps_users_feed = service.RetrieveAllMembers(group, suspended_users)  # BUG catch AppsForYourDomainException if group doesn't exist
-		self.log.debug(gapps_users_feed)  # DEBUG
+		#self.log.debug(gapps_users_feed)  # DEBUG
 		emails = [user_dict['memberId'] for user_dict in gapps_users_feed]  # Groups service gives us email addresses instead of usernames
 		users = [email.split('@')[0] for email in emails if email.endswith(self.gapps_domain)]  # toss out members outside our domain
+		self._populate_users_metadata_in_group(users)  # EXPERIMENTAL!
 		return users
 	
 	def _user_in_group(self, username, groupname):
+		"""Is user a member of specified group?"""
 		groups_service = self._get_groups_service()
 		groups_service.ProgrammaticLogin()
 		return groups_service.IsMember(username, groupname)
@@ -214,16 +238,18 @@ class GoogleAppsPasswordStore(Component):
 			self.log.debug('groups not cached, requesting from Google Apps for user: '+username)
 			service = self._get_groups_service()
 			try:
-				service.ProgrammaticLogin()
+				service.ProgrammaticLogin()  # BUG blows up with CaptchaRequired under heavy load
 				groups_feed = service.RetrieveGroups(username, False)
 				groups = [group_dict['groupName'] for group_dict in groups_feed]
 		
 				self.group_cache[username] = groups
 			except AppsForYourDomainException, e:
 				self.log.debug(e)
+				self.log.debug('Failed to retrieve groups for user "%s", caching [] to avoid problems!')
 				groups = []
+				self.group_cache[username] = groups
 			
-		self.log.debug(groups)
+		#self.log.debug(groups)
 		return groups
 	
 	
