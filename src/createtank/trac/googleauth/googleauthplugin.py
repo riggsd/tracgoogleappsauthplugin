@@ -65,7 +65,10 @@ class GoogleAppsPasswordStore(Component):
 		lists and so email is available to notification subsystem"""
 		db = self.env.get_db_cnx()
 		cursor = db.cursor()
-		# WARNING: SQL only tested with sqlite3
+		# WARNING: SQL only tested with sqlite3; make this PostgreSQL friendly
+		# by only INSERTing for sid's which don't exist already (which is also
+		# an optimization, as single SELECT is probably faster than multiple
+		# INSERT IGNOREs)
 		cursor.execute('INSERT OR IGNORE INTO session (sid, authenticated, last_visit) VALUES (%s, 1, 0)', (username,))
 		cursor.execute('INSERT OR IGNORE INTO session_attribute (sid, authenticated, name, value) VALUES (%s, 1, "email", %s)', (username, email))
 		if name:

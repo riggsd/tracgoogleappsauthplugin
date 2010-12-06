@@ -14,6 +14,12 @@ Features:
 
 * Allows basic user info listing via Trac Account Manager
 
+* Pre-populates Trac database with email of every user so that email
+  notifications can be sent to users who have never logged in to Trac, and so
+  the ticket "Assign To" drop-down is fully populated when using the config
+  `[ticket]` setting `restrict_owner = true`. Simply view the Admin user
+  listing page to populate the database.
+
 Please note that this software is currently in "alpha" state and under active development!
 
 Author: David A. Riggs <david.riggs@createtank.com>
