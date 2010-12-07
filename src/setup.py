@@ -2,6 +2,25 @@
 
 from setuptools import find_packages, setup
 
+extra = {}
+
+try:
+	from trac.util.dist  import  get_l10n_cmdclass
+	cmdclass = get_l10n_cmdclass()
+	if cmdclass:
+		extra['cmdclass'] = cmdclass
+		extractors = [
+			('**.py',				'python', None),
+			('**/templates/**.html', 'genshi', None),
+		]
+		extra['message_extractors'] = {
+			'acct_mgr': extractors,
+		}
+# i18n is implemented to be optional here
+except ImportError:
+	pass
+
+
 setup(
 	name='TracGoogleAppsAuthPlugin',
 	version='0.2.4',
@@ -12,9 +31,12 @@ setup(
 	description='Trac authentication plugin for integration with hosted Google Apps domain',
 	long_description=open('README.txt').read(),
 	install_requires = ['Trac >= 0.12', 'gdata >= 2.0.0'],
-	packages=find_packages(exclude=['*.tests*']),
+	packages=['createtank.trac.googleauth'],
 	package_data = {
-				'createtank.trac.googleauth': ['locale/*.pot', 'locale/*/LC_MESSAGES/*.mo',]
+				'createtank.trac.googleauth': [
+											'locale/*.pot',
+											'locale/*/LC_MESSAGES/*.mo',
+											]
 				},
 	entry_points = '''
 		[trac.plugins]
@@ -32,5 +54,6 @@ setup(
 				'Programming Language :: Python :: 2',
 				'Programming Language :: Python :: 2.5',
 				'Topic :: System :: Systems Administration :: Authentication/Directory'
-				]
+				],
+	**extra
 )
