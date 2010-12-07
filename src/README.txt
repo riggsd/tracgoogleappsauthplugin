@@ -80,7 +80,7 @@ Trac 'trac.ini' configuration::
 	[components]
 	acct_mgr.api.accountmanager = enabled
 	acct_mgr.web_ui.loginmodule = enabled
-	createtank.trac.googleauth.googleauthplugin.googleappspasswordstore = enabled
+	googleappsauth.googleauthplugin.googleappspasswordstore = enabled
 	trac.web.auth.loginmodule = disabled
 	
 	[google_apps]

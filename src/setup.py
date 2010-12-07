@@ -14,7 +14,7 @@ try:
 			('**/templates/**.html', 'genshi', None),
 		]
 		extra['message_extractors'] = {
-			'acct_mgr': extractors,
+			'googleappsauth': extractors,
 		}
 # i18n is implemented to be optional here
 except ImportError:
@@ -23,7 +23,7 @@ except ImportError:
 
 setup(
 	name='TracGoogleAppsAuthPlugin',
-	version='0.2.4',
+	version='0.3.0',
 	author='David A. Riggs',
 	author_email='david.riggs@createtank.com',
 	url='http://code.google.com/p/tracgoogleappsauthplugin/',
@@ -31,16 +31,16 @@ setup(
 	description='Trac authentication plugin for integration with hosted Google Apps domain',
 	long_description=open('README.txt').read(),
 	install_requires = ['Trac >= 0.12', 'gdata >= 2.0.0'],
-	packages=['createtank.trac.googleauth'],
+	packages=['googleappsauth'],
 	package_data = {
-				'createtank.trac.googleauth': [
-											'locale/*.pot',
-											'locale/*/LC_MESSAGES/*.mo',
-											]
+				'googleappsauth': [
+								'locale/*.pot',
+								'locale/*/LC_MESSAGES/*.mo',
+								]
 				},
 	entry_points = '''
 		[trac.plugins]
-		googleappsauthplugin = createtank.trac.googleauth
+		googleappsauth = googleappsauth
 	''',
 	classifiers=[
 				'Development Status :: 3 - Alpha',

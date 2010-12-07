@@ -221,7 +221,7 @@ class GoogleAppsPasswordStore(Component):
 		email = self._get_user_email(user)		
 		service = self._get_apps_service()
 		try:
-			service.ClientLogin(email, password, account_type='HOSTED', source='createtank-tracgoogleappsauthplugin-0.2')
+			service.ClientLogin(email, password, account_type='HOSTED', source='createtank-tracgoogleappsauthplugin-0.3')
 			
 			if self.gapps_group_access and not self._user_in_group(user, self.gapps_group_access):
 				self.log.debug('User "%s" not in required Google Apps group "%s", login rejected.' % (user, self.gapps_group_access))
@@ -252,9 +252,9 @@ class GoogleAppsPasswordStore(Component):
 		Returns a string used to identify this implementation in the config.
 		This password storage implementation will be used if the value of
 		the config property "account-manager.password_format" matches.
-		This implementation uses the key 'googleappsauthplugin'.
+		This implementation uses the key 'googleappsauth'.
 		"""
-		return 'googleappsauthplugin'
+		return 'googleappsauth'
 
 
 	# IPermissionGroupProvider API

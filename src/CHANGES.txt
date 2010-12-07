@@ -1,7 +1,7 @@
 TracGoogleAppsAuthPlugin Changelog
 ==================================
 
-0.2.4 - 2010-12-07
+0.3.0 - 2010-12-07
 ------------------
 
 * Automatically encrypt the stored Google Apps password (config value
@@ -10,6 +10,9 @@ TracGoogleAppsAuthPlugin Changelog
   only to prevent making it easily displayed to "friendly" sources.
   
 * i18n support, see: http://trac.edgewall.org/wiki/CookBook/PluginL10N
+
+* Rename Python package from `createtank.trac.googleauth` to simply
+  `googleappsauth`.
 
 
 0.2.3 - 2010-12-03
