@@ -20,20 +20,20 @@ msgstr ""
 
 #: createtank/trac/googleauth/googleauthplugin.py:33
 msgid "Domain name of the Google Apps domain"
-msgstr "fnord"
+msgstr "Domain name of the Google Apps domain"
 
 #: createtank/trac/googleauth/googleauthplugin.py:34
 msgid "Username or email with Google Apps admin access"
-msgstr "fnord"
+msgstr "Username or email with Google Apps admin access"
 
 #: createtank/trac/googleauth/googleauthplugin.py:35
 msgid ""
 "Password for Google Apps admin account; this is magically encrypted to "
 "make storage slightly more secure"
-msgstr "fnord"
+msgstr "Password for Google Apps admin account; this is magically encrypted to make storage slightly more secure"
 
 #: createtank/trac/googleauth/googleauthplugin.py:36
 msgid ""
 "Optional Google Apps Group which is exclusively granted access to this "
 "Trac site"
-msgstr "fnord"
+msgstr "Optional Google Apps Group which is exclusively granted access to this Trac site"
