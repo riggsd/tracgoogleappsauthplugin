@@ -2,7 +2,7 @@
 Google Apps authentication plugin for Trac
 """
 
-from trac.core import *
+from trac.core import *	#@UnusedWildImport
 from trac.config import Option, BoolOption
 from trac.env import ISystemInfoProvider
 from trac.perm import IPermissionGroupProvider
@@ -14,6 +14,11 @@ from gdata.apps.groups.service import GroupsService
 from gdata.service import BadAuthentication, CaptchaRequired
 from gdata.apps.service import AppsForYourDomainException
 
+# i18n
+from pkg_resources import resource_filename	#@UnresolvedImport
+from trac.util.translation import domain_functions
+_, add_domain = domain_functions('googleappsauth', ('_', 'add_domain'))
+
 
 class GoogleAppsPasswordStore(Component):
 	"""TracAccountManager Password Store which authenticates against a Google Apps domain"""
@@ -22,10 +27,11 @@ class GoogleAppsPasswordStore(Component):
 	
 	# Plugin Options
 	opt_key = 'google_apps'
-	gapps_domain = Option(opt_key, 'domain', '', """Domain name of the Google Apps domain""")
-	gapps_admin_username = Option(opt_key, 'admin_username', '', """Username or email with Google Apps admin access""")
-	gapps_admin_secret = Option(opt_key, 'admin_secret', '', """Password for Google Apps admin account""")
-	gapps_group_access = Option(opt_key, 'group_access', '', """Optional Google Apps Group which is exclusively granted access to this Trac site""")
+	
+	gapps_domain = Option(opt_key, 'domain', doc=_("Domain name of the Google Apps domain"))
+	gapps_admin_username = Option(opt_key, 'admin_username', doc=_("Username or email with Google Apps admin access"))
+	gapps_admin_secret = Option(opt_key, 'admin_secret', doc=_("Password for Google Apps admin account"))
+	gapps_group_access = Option(opt_key, 'group_access', doc=_("Optional Google Apps Group which is exclusively granted access to this Trac site"))
 	#enable_multiple_stores = BoolOption(opt_key, 'enable_multiple_stores', False, """Optional flag to enable use of this plugin alongside other PasswordStore implementations (will slightly increase network overhead)""")
 	
 	
@@ -35,6 +41,10 @@ class GoogleAppsPasswordStore(Component):
 		#db = self.env.get_db_cnx()
 
 		self.group_cache = {'anonymous':[],}
+		
+		# i18n
+		locale_dir = resource_filename(__name__, 'locale')
+		add_domain(self.env.path, locale_dir)
 	
 	def _validate(self):
 		"""Validate that the plugin is configured correctly"""

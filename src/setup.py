@@ -4,14 +4,18 @@ from setuptools import find_packages, setup
 
 setup(
 	name='TracGoogleAppsAuthPlugin',
-	version='0.2.3',
+	version='0.2.4',
 	author='David A. Riggs',
 	author_email='david.riggs@createtank.com',
 	url='http://code.google.com/p/tracgoogleappsauthplugin/',
 	download_url='http://code.google.com/p/tracgoogleappsauthplugin/',
 	description='Trac authentication plugin for integration with hosted Google Apps domain',
 	long_description=open('README.txt').read(),
+	install_requires = ['Trac >= 0.12', 'gdata >= 2.0.0'],
 	packages=find_packages(exclude=['*.tests*']),
+	package_data = {
+				'createtank.trac.googleauth': ['locale/*.pot', 'locale/*/LC_MESSAGES/*.mo',]
+				},
 	entry_points = '''
 		[trac.plugins]
 		googleappsauthplugin = createtank.trac.googleauth

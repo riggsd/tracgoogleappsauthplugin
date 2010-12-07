@@ -1,6 +1,12 @@
 TracGoogleAppsAuthPlugin Changelog
 ==================================
 
+0.2.4 - 2010-12-06
+------------------
+
+* i18n support, see: http://trac.edgewall.org/wiki/CookBook/PluginL10N
+
+
 0.2.3 - 2010-12-03
 ------------------
 

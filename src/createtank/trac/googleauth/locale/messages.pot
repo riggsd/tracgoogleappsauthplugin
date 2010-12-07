@@ -1,0 +1,38 @@
+# Translations template for TracGoogleAppsAuthPlugin.
+# Copyright (C) 2010 ORGANIZATION
+# This file is distributed under the same license as the
+# TracGoogleAppsAuthPlugin project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2010.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: TracGoogleAppsAuthPlugin 0.2.4\n"
+"Report-Msgid-Bugs-To: david.riggs@createtank.com\n"
+"POT-Creation-Date: 2010-12-06 12:06-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 0.9.5\n"
+
+#: createtank/trac/googleauth/googleauthplugin.py:31
+msgid "Domain name of the Google Apps domain"
+msgstr ""
+
+#: createtank/trac/googleauth/googleauthplugin.py:32
+msgid "Username or email with Google Apps admin access"
+msgstr ""
+
+#: createtank/trac/googleauth/googleauthplugin.py:33
+msgid "Password for Google Apps admin account"
+msgstr ""
+
+#: createtank/trac/googleauth/googleauthplugin.py:34
+msgid ""
+"Optional Google Apps Group which is exclusively granted access to "
+"this Trac site"
+msgstr ""
+
