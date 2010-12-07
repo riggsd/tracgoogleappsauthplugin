@@ -1,1 +1,1 @@
-from googleauthplugin import GoogleAppsPasswordStore
+from plugin import GoogleAppsPasswordStore

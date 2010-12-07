@@ -80,7 +80,7 @@ Trac 'trac.ini' configuration::
 	[components]
 	acct_mgr.api.accountmanager = enabled
 	acct_mgr.web_ui.loginmodule = enabled
-	googleappsauth.googleauthplugin.googleappspasswordstore = enabled
+	googleappsauth.plugin.googleappspasswordstore = enabled
 	trac.web.auth.loginmodule = disabled
 	
 	[google_apps]
@@ -89,7 +89,7 @@ Trac 'trac.ini' configuration::
 	admin_username = sysadmin
 	admin_secret = TOP_S3CRET
 
-You can configure most (all?) of these settings from the Trac web-based Admin console. Essentially,
+You can configure all of these settings from the Trac web-based Admin console. Essentially,
 if you already have the web-based TracAccountManager plugin enabled and working, just enable the
 GoogleAppsPasswordStore (under TracGoogleAppsAuthPlugin) and disable the other password stores
 HtDigestStore and HtPasswdStore (under TracAccountManager). You can then configure the plugin
