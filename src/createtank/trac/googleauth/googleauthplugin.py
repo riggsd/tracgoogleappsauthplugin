@@ -14,6 +14,8 @@ from gdata.apps.groups.service import GroupsService
 from gdata.service import BadAuthentication, CaptchaRequired
 from gdata.apps.service import AppsForYourDomainException
 
+from base64 import b64encode, b64decode
+
 # i18n
 from pkg_resources import resource_filename	#@UnresolvedImport
 from trac.util.translation import domain_functions
@@ -30,17 +32,25 @@ class GoogleAppsPasswordStore(Component):
 	
 	gapps_domain = Option(opt_key, 'domain', doc=_("Domain name of the Google Apps domain"))
 	gapps_admin_username = Option(opt_key, 'admin_username', doc=_("Username or email with Google Apps admin access"))
-	gapps_admin_secret = Option(opt_key, 'admin_secret', doc=_("Password for Google Apps admin account"))
+	gapps_admin_secret = Option(opt_key, 'admin_secret', doc=_("Password for Google Apps admin account; this is magically encrypted to make storage slightly more secure"))
 	gapps_group_access = Option(opt_key, 'group_access', doc=_("Optional Google Apps Group which is exclusively granted access to this Trac site"))
 	#enable_multiple_stores = BoolOption(opt_key, 'enable_multiple_stores', False, """Optional flag to enable use of this plugin alongside other PasswordStore implementations (will slightly increase network overhead)""")
 	
 	
 	def __init__(self):
 		self.env.log.debug('GoogleAppsPasswordStore.__init__()')
-		self.env.log.debug('domain: %s\tadmin_username: %s\tadmin_secret: %s\tgroup_access: %s' % (self.gapps_domain, self.gapps_admin_username, len(self.gapps_admin_secret)*'*', self.gapps_group_access))
-		#db = self.env.get_db_cnx()
+		self.env.log.debug('domain: %s\tadmin_username: %s\tadmin_secret: %s\tgroup_access: %s' % \
+						(self.gapps_domain, self.gapps_admin_username, len(self.gapps_admin_secret)*'*', self.gapps_group_access))
 
 		self.group_cache = {'anonymous':[],}
+		
+		if not self._is_encrypted(self.gapps_admin_secret):
+			self.env.log.debug('Attempting to encrypt config option "[google_apps] admin_secret" ...')
+			try:
+				self.config.set(self.opt_key, 'admin_secret', self._encrypt(self.gapps_admin_secret))
+				self.config.save()
+			except OSError, e:
+				self.env.log.debug(e)
 		
 		# i18n
 		locale_dir = resource_filename(__name__, 'locale')
@@ -49,6 +59,23 @@ class GoogleAppsPasswordStore(Component):
 	def _validate(self):
 		"""Validate that the plugin is configured correctly"""
 		return self.gapps_domain and self.gapps_admin_username and self.gapps_admin_secret
+	
+	def _is_encrypted(self, val):
+		return val and val.startswith('{enc}')
+		
+	def _decrypt(self, val):
+		if self._is_encrypted(val):
+			encrypted_str = val.split('{enc}',1)[1]
+			decrypted_str = b64decode(encrypted_str)
+			return decrypted_str
+		else:
+			return val
+	
+	def _encrypt(self, val):
+		if self._is_encrypted(val):
+			return val
+		else:
+			return '{enc}'+b64encode(val)
 	
 	def _get_user_email(self, username):
 		if username.find('@') > -1:
@@ -63,12 +90,14 @@ class GoogleAppsPasswordStore(Component):
 	def _get_apps_service(self):
 		"""Build instance of gdata AppsService ready for ProgrammaticLogin()"""
 		email = self._get_admin_email()
-		return AppsService(email=email, domain=self.gapps_domain, password=self.gapps_admin_secret)
+		password = self._decrypt(self.gapps_admin_secret)
+		return AppsService(email=email, domain=self.gapps_domain, password=password)
 	
 	def _get_groups_service(self):
 		"""Build instance of gdata GroupsService ready for ProgrammaticLogin()"""
 		email = self._get_admin_email()
-		return GroupsService(email=email, domain=self.gapps_domain, password=self.gapps_admin_secret)
+		password = self._decrypt(self.gapps_admin_secret)
+		return GroupsService(email=email, domain=self.gapps_domain, password=password)
 	
 	def _populate_user_metadata(self, username, email, name=None):
 		"""Populate a user's metadata in the Trac DB so they appear in dropdown

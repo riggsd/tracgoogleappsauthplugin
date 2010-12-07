@@ -1,9 +1,14 @@
 TracGoogleAppsAuthPlugin Changelog
 ==================================
 
-0.2.4 - 2010-12-06
+0.2.4 - 2010-12-07
 ------------------
 
+* Automatically encrypt the stored Google Apps password (config value
+  'admin_secret') to protect against casual observation on the filesystem
+  or the web interface. Note that the encryption is trivial and is meant
+  only to prevent making it easily displayed to "friendly" sources.
+  
 * i18n support, see: http://trac.edgewall.org/wiki/CookBook/PluginL10N
 
 

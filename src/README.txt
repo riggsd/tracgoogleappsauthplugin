@@ -19,6 +19,9 @@ Features:
   the ticket "Assign To" drop-down is fully populated when using the config
   `[ticket]` setting `restrict_owner = true`. Simply view the Admin user
   listing page to populate the database.
+ 
+* Encrypts stored Google Apps password to protect against casual observers on
+  filesystem and via web, but this is not nearly as secure as using OpenID
 
 Please note that this software is currently in "alpha" state and under active development!
 
