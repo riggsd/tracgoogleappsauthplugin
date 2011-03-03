@@ -1,1 +1,2 @@
 include *.txt
+recursive-include googleappsauth/locale *.mo *.po *.pot

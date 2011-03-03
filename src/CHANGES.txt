@@ -1,6 +1,12 @@
 TracGoogleAppsAuthPlugin Changelog
 ==================================
 
+0.3.1 - 2011-03-03
+------------------
+
+* Bugfix to ensure locale/ directory is included in source distribution
+
+
 0.3.0 - 2010-12-07
 ------------------
 

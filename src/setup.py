@@ -23,7 +23,7 @@ except ImportError:
 
 setup(
 	name='TracGoogleAppsAuthPlugin',
-	version='0.3.0',
+	version='0.3.1',
 	author='David A. Riggs',
 	author_email='david.riggs@createtank.com',
 	url='http://code.google.com/p/tracgoogleappsauthplugin/',
