@@ -10,7 +10,8 @@ Features:
 
 * Allows restriction of userbase for Trac instance based on membership in Google Apps group
 
-* Assigns Trac groups to users based on their Google Apps groups
+* Assigns Trac groups to users based on their Google Apps groups (note that
+  they must be subscribed with their username, not an email alias)
 
 * Allows basic user info listing via Trac Account Manager
 
@@ -21,9 +22,11 @@ Features:
   listing page to populate the database.
  
 * Encrypts stored Google Apps password to protect against casual observers on
-  filesystem and via web, but this is not nearly as secure as using OpenID
+  filesystem and via web (but this is not nearly as secure as using OpenID)
 
-Please note that this software is currently in "alpha" state and under active development!
+* Language translations: Chinese (simplified), Esperanto, Finnish, Russian, Ukrainian
+
+Please note that this software is currently in "beta" state and under active development!
 
 Author: David A. Riggs <david.riggs@createtank.com>
 
@@ -84,10 +87,16 @@ Trac 'trac.ini' configuration::
 	trac.web.auth.loginmodule = disabled
 	
 	[google_apps]
+	
+	# your Google Apps domain
 	domain = mydomainname.com
-	group_access = trac_users
+	
+	# Google Apps admin account username and password (which will be magically encrypted)
 	admin_username = sysadmin
 	admin_secret = TOP_S3CRET
+	
+	# optional Google Apps Group which is exclusively granted access to this Trac site
+	group_access = trac_users
 
 You can configure all of these settings from the Trac web-based Admin console. Essentially,
 if you already have the web-based TracAccountManager plugin enabled and working, just enable the
@@ -95,4 +104,17 @@ GoogleAppsPasswordStore (under TracGoogleAppsAuthPlugin) and disable the other p
 HtDigestStore and HtPasswdStore (under TracAccountManager). You can then configure the plugin
 via the Accounts / Configuration menu of the Trac web-based Admin.
 
-Detailed documentation TODO...
+
+Troubleshooting
+===============
+
+Some users report the exception 'CaptchaRequired: Captcha Required' when first using
+the plugin. This appears to be Google trying to verify the programmatic login, and the
+account is "locked" until a human verifies it. Until this is handled internally by the
+plugin (if ever), you may verify the account at the following URL:
+
+   https://www.google.com/accounts/DisplayUnlockCaptcha
+
+After "unlocking" the captcha request at the above URL, the plugin should work without issue.
+
+For general support, contact the author: "David A. Riggs" <david.riggs@createtank.com>

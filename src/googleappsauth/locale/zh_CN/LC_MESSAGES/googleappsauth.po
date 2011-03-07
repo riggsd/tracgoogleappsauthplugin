@@ -1,0 +1,33 @@
+# Translations template for TracGoogleAppsAuthPlugin.
+# Copyright (C) 201 1 Free Software Foundation, Inc.
+# This file is distributed under the same license as the tracgoogleappsauthplugin package.
+# Aron Xu <happyaron.xu@gmail.com>, 2011.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: tracgoogleappsauthplugin 0.3.0\n"
+"Report-Msgid-Bugs-To: david.riggs@createtank.com\n"
+"POT-Creation-Date: 2010-12-07 14:38-0500\n"
+"PO-Revision-Date: 2011-03-05 23:36+0800\n"
+"Last-Translator: Aron Xu <happyaron.xu@gmail.com>\n"
+"Language-Team: Chinese (simplified) <i18n-zh@googlegroups.com>\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: createtank/trac/googleauth/googleauthplugin.py:33
+msgid "Domain name of the Google Apps domain"
+msgstr "Google Apps 域名"
+
+#: createtank/trac/googleauth/googleauthplugin.py:34
+msgid "Username or email with Google Apps admin access"
+msgstr "有该 Google Apps 管理员权限的用户名或电子邮件地址"
+
+#: createtank/trac/googleauth/googleauthplugin.py:35
+msgid "Password for Google Apps admin account; this is magically encrypted to make storage slightly more secure"
+msgstr "Google Apps 管理员帐号密码，此密码会被加密储存以使其更加安全"
+
+#: createtank/trac/googleauth/googleauthplugin.py:36
+msgid "Optional Google Apps Group which is exclusively granted access to this Trac site"
+msgstr "可选的 Google Apps 组，分配给他们这个 Trac 站点的权限"

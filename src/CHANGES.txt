@@ -1,6 +1,18 @@
 TracGoogleAppsAuthPlugin Changelog
 ==================================
 
+0.3.2 - 2011-XX-XX
+------------------
+
+* l10n by The Translation Project <http://translationproject.org> into
+  the following languages:
+    - Esperanto [eo]
+    - Finnish [fi]
+    - Russian [ru]
+    - Ukrainian [uk]
+    - Chinese (simplified) [zh_CN]
+
+
 0.3.1 - 2011-03-03
 ------------------
 

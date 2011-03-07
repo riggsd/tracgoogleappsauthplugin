@@ -1,0 +1,33 @@
+# Translations template for TracGoogleAppsAuthPlugin.
+# Copyright (C) 2011 Free Software Foundation, Inc.
+# This file is distributed under the same license as the tracgoogleappsauthplugin package.
+# Felipe Castro <fefcas@gmail.com>, 2011.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: tracgoogleappsauthplugin 0.3.0\n"
+"Report-Msgid-Bugs-To: david.riggs@createtank.com\n"
+"POT-Creation-Date: 2010-12-07 14:38-0500\n"
+"PO-Revision-Date: 2011-03-05 09:55-0300\n"
+"Last-Translator: Felipe Castro <fefcas@gmail.com>\n"
+"Language-Team: Esperanto <translation-team-eo@lists.sourceforge.net>\n"
+"Language: eo\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: createtank/trac/googleauth/googleauthplugin.py:33
+msgid "Domain name of the Google Apps domain"
+msgstr "Retregiona nomo de la regiono Google Apps"
+
+#: createtank/trac/googleauth/googleauthplugin.py:34
+msgid "Username or email with Google Apps admin access"
+msgstr "Uzantnomo aŭ retadreso kun administrada aliro al Google Apps"
+
+#: createtank/trac/googleauth/googleauthplugin.py:35
+msgid "Password for Google Apps admin account; this is magically encrypted to make storage slightly more secure"
+msgstr "Pasvorto por administrada konto en Google Apps; tio ĉi estas \"magie\" enĉifrite por igi konservadon iomete pli sekura"
+
+#: createtank/trac/googleauth/googleauthplugin.py:36
+msgid "Optional Google Apps Group which is exclusively granted access to this Trac site"
+msgstr "Nedeviga grupo de Google Apps, kiu havas ekskluzivan garantion de aliro al tiu ĉi retejo Trac"

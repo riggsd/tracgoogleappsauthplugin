@@ -304,4 +304,3 @@ class GoogleAppsPasswordStore(Component):
 		import gdata
 		from trac.util import get_pkginfo
 		yield 'Google Data', get_pkginfo(gdata)['version']
-

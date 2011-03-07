@@ -1,0 +1,35 @@
+# Translations template for TracGoogleAppsAuthPlugin.
+# Copyright © 2010 Free Software Foundation, Inc.
+# This file is distributed under the same license as the tracgoogleappsauthplugin package.
+# Jorma Karvonen <karvonen.jorma@gmail.com>, 2011.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: tracgoogleappsauthplugin 0.3.0\n"
+"Report-Msgid-Bugs-To: david.riggs@createtank.com\n"
+"POT-Creation-Date: 2010-12-07 14:38-0500\n"
+"PO-Revision-Date: 2011-03-05 19:33+0200\n"
+"Last-Translator: Jorma Karvonen <karvonen.jorma@gmail.com>\n"
+"Language-Team: Finnish <translation-team-fi@lists.sourceforge.net>\n"
+"Language: fi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"Generated-By: Babel 0.9.5\n"
+
+#: createtank/trac/googleauth/googleauthplugin.py:33
+msgid "Domain name of the Google Apps domain"
+msgstr "Google-sovellusverkko-alueen nimi"
+
+#: createtank/trac/googleauth/googleauthplugin.py:34
+msgid "Username or email with Google Apps admin access"
+msgstr "Käyttäjänimi tai sähköpostiosoite Google-sovellushallintakäyttöoikeuksilla"
+
+#: createtank/trac/googleauth/googleauthplugin.py:35
+msgid "Password for Google Apps admin account; this is magically encrypted to make storage slightly more secure"
+msgstr "Salasana Google-sovellushallintatilille; tämä on salattu maagisesti tallennuspaikan tekemiseksi hiukan turvallisemmaksi"
+
+#: createtank/trac/googleauth/googleauthplugin.py:36
+msgid "Optional Google Apps Group which is exclusively granted access to this Trac site"
+msgstr "Valinnainen Google-sovelluryhmä, joka takaa yksinomaisen pääsyn tälle Trac-sivustolle"

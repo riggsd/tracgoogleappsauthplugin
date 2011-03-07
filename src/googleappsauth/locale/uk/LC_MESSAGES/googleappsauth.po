@@ -1,0 +1,35 @@
+# Ukrainian translation of TracGoogleAppsAuthPlugin.
+# Copyright (C) 2010 Free Software Foundation, Inc.
+# This file is distributed under the same license as the tracgoogleappsauthplugin package.
+#
+# Yuri Chornoivan <yurchor@ukr.net>, 2011.
+msgid ""
+msgstr ""
+"Project-Id-Version: tracgoogleappsauthplugin 0.3.0\n"
+"Report-Msgid-Bugs-To: david.riggs@createtank.com\n"
+"POT-Creation-Date: 2010-12-07 14:38-0500\n"
+"PO-Revision-Date: 2011-03-05 13:47+0200\n"
+"Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
+"Language-Team: Ukrainian <translation-team-uk@lists.sourceforge.net>\n"
+"Language: ukX-Generator: Lokalize 1.2\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 0.9.5\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: createtank/trac/googleauth/googleauthplugin.py:33
+msgid "Domain name of the Google Apps domain"
+msgstr "Назва домену Google Apps"
+
+#: createtank/trac/googleauth/googleauthplugin.py:34
+msgid "Username or email with Google Apps admin access"
+msgstr "Ім’я користувача або адреса електронної пошти з доступом до адміністрування Google Apps"
+
+#: createtank/trac/googleauth/googleauthplugin.py:35
+msgid "Password for Google Apps admin account; this is magically encrypted to make storage slightly more secure"
+msgstr "Пароль до адміністративного облікового запису Google Apps. Ці дані буде зашифровано для того, щоб трохи посилити захист."
+
+#: createtank/trac/googleauth/googleauthplugin.py:36
+msgid "Optional Google Apps Group which is exclusively granted access to this Trac site"
+msgstr "Необов’язкова група Google Apps. Користуватися сайтом Trac зможуть лише користувачі з цієї групи."
