@@ -1,15 +1,15 @@
 # English (United States) translations for TracGoogleAppsAuthPlugin.
-# Copyright (C) 2010 createTank
+# Copyright (C) 2011 createTank
 # This file is distributed under the same license as the
 # TracGoogleAppsAuthPlugin project.
-# David A. Riggs <david.riggs@createtank.com>, 2010.
+# David A. Riggs <david.riggs@createtank.com>, 2011.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: TracGoogleAppsAuthPlugin 0.2.4\n"
 "Report-Msgid-Bugs-To: david.riggs@createtank.com\n"
 "POT-Creation-Date: 2010-12-06 12:06+0500\n"
-"PO-Revision-Date: 2010-12-07 14:38-0500\n"
+"PO-Revision-Date: 2011-03-07 17:44-0500\n"
 "Last-Translator: David A. Riggs <david.riggs@createtank.com>\n"
 "Language-Team: en_US <LL@li.org>\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
